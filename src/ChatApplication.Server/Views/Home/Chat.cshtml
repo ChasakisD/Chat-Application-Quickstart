@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = null;
+}
+
+<h2>Chat</h2>
+
+<style type="text/css">
+    .container {
+        background-color: azure;
+        border: thick solid #808080;
+        padding: 20px;
+        margin: 20px;
+    }
+</style>
+
+<div class="container">
+    <input type="text" id="message" placeholder="Enter your message here:"/>
+    <input type="button" id="sendmessage" value="Send" />
+    <input type="hidden" id="username" />
+    <ul id="discussion"></ul>
+</div>
+
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<script src="~/signalr/hubs/"></script>
+
+<script type="text/javascript">
+    $(function () {
+        /* Chat Hub Connection */
+        var chat = $.connection.chatHub;
+
+        /* Default GroupName where they will login from the mvc view */
+        var groupname = "General";
+
+        /* GetMessage */
+        chat.client.getMessage = function (name, message) {
+            var encodedName = $('<div />').text(name).html();
+            var encodedMsg = $('<div />').text(message).html();
+            $('#discussion').append('<li><strong>' + encodedName
+                + '</strong>:  ' + encodedMsg + '</li>');
+        };
+        
+        $('#username').val(prompt('Name:', ''));
+
+        $('#message').focus();
+        
+        $.connection.hub.start().done(function () {
+            chat.server.joinGroup(groupname);
+
+            /* On sendMessage Click Event */
+            $('#sendmessage').click(function () {
+                chat.server.sendMessage($('#username').val(), $('#message').val(), groupname);
+                $('#message').val('').focus();
+            });
+        });
+    });
+</script>

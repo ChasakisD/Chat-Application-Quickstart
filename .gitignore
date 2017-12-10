@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /src/ChatApplication.Server/Properties/PublishProfiles/ChatApplicationDemo - Web Deploy.pubxml
+/src/ChatApplication.Server/Properties/PublishProfiles/ChatAppQuickstart - Web Deploy.pubxml
