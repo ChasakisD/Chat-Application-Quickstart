@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="ChatApplication.Cells.IncomingMessageViewCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApplication;assembly=ChatApplication">
+    <ViewCell.View>
+        <Grid Padding="10" ColumnSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Small"
+                Text="{Binding Username, StringFormat='{0}:'}"
+                TextColor="Gray" />
+
+            <Frame
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="{Binding Source={x:Static local:Constants.IncomingMessageColor}}">
+                <Frame.HasShadow>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="Android" Value="true" />
+                        <On Platform="iOS" Value="false" />
+                    </OnPlatform>
+                </Frame.HasShadow>
+                <StackLayout>
+                    <Label Text="{Binding Text}" TextColor="White" />
+                </StackLayout>
+            </Frame>
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Micro"
+                Text="{Binding MessageDateTime, StringFormat='{0:MM/dd/yyyy hh:mm tt}'}"
+                TextColor="Gray" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>
