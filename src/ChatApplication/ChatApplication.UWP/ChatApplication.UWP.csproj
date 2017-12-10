@@ -129,13 +129,13 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.168-pre" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChatApplication\ChatApplication.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
-      <Name>ChatApplication</Name>
-    </ProjectReference>
+    <None Include="ChatApplication.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ChatApplication.UWP_TemporaryKey.pfx" />
+    <ProjectReference Include="..\ChatApplication\ChatApplication.csproj">
+      <Project>{068d9b31-7abc-43aa-9bf4-0e4148ed00b8}</Project>
+      <Name>ChatApplication</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
